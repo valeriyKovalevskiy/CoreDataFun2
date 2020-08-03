@@ -13,6 +13,16 @@ import CoreData
 class TableViewController: UITableViewController {
 
     var tasks = [Task]()
+    
+    var tasksTableDataSource: [[Task]] {
+        return [nonCompletedTasks, completedTasks]
+    }
+    
+    var completedTasks = [Task]()
+    var nonCompletedTasks = [Task]()
+    
+    let headerTitles = ["Undone", "Done"]
+    
     var managedContext: NSManagedObjectContext!
     
     //MARK: - Lifecycle
@@ -20,36 +30,35 @@ class TableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         fetchTasks()
+        filterTasks()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate?.persistentContainer.viewContext
         self.managedContext = managedContext
-        
-        
-        
-        
     }
     
-        func fetchTasks() {
-            do {
-                let request = Task.fetchRequest() as NSFetchRequest<Task>
-
-                
-                self.tasks = try managedContext.fetch(request)
-                
-                DispatchQueue.main.async { [weak self] in
-                    self?.tableView.reloadData()
-                }
-            }
-            catch {
-        
+    func fetchTasks() {
+        do {
+            let request = Task.fetchRequest() as NSFetchRequest<Task>
+            
+            //sort completed and not completed
+            
+            self.tasks = try managedContext.fetch(request)
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
             }
         }
+        catch {
+            
+        }
+    }
 
     //MARK: - Methods
     func createTask() {
@@ -61,7 +70,6 @@ class TableViewController: UITableViewController {
 
         ac.addAction(UIAlertAction(title: "Save", style: .default) { [weak self] action in
 
-            guard let strongSelf = self else { return }
             guard let text = textField?.text else { return }
             
             self?.saveTask(name: text, completion: { (result) in
@@ -70,7 +78,8 @@ class TableViewController: UITableViewController {
                     print(error.localizedDescription)
                 case .success(let finished):
                     if finished {
-                        strongSelf.tableView.reloadData()
+                        self?.filterTasks()
+                        self?.tableView.reloadData()
                     }
                     else {
                         
@@ -84,6 +93,11 @@ class TableViewController: UITableViewController {
         })
         present(ac, animated: true)
 
+    }
+    
+    func filterTasks() {
+        tasks.forEach { $0.isCompleted == true ? completedTasks.append($0) : nonCompletedTasks.append($0) }
+        self.tableView.reloadData()
     }
     
     func saveTask(name: String,
@@ -127,67 +141,37 @@ class TableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         tasks.count
+        tasksTableDataSource[section].count
     }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        tasksTableDataSource.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section < headerTitles.count {
+            return headerTitles[section]
+        }
 
+        return nil
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
-        cell.textLabel?.text = tasks[indexPath.row].name
-        cell.detailTextLabel?.text = tasks[indexPath.row].describe
-
+        let cellTask = tasksTableDataSource[indexPath.section][indexPath.row]
+        
+        cell.textLabel?.text = cellTask.name
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let controller = DetailViewController()
         controller.managedContext = self.managedContext
+        
+        let cellTask = tasksTableDataSource[indexPath.section][indexPath.row]
+        controller.taskTitle = cellTask.name
+        cellTask.isCompleted = true
+        
         self.navigationController?.pushViewController(controller, animated: true)
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

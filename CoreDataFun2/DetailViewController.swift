@@ -12,10 +12,13 @@ import CoreData
 class DetailViewController: UIViewController {
 
     var managedContext: NSManagedObjectContext!
+    var taskTitle: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        view.backgroundColor = .red
+        title = taskTitle
         // Do any additional setup after loading the view.
     }
     
