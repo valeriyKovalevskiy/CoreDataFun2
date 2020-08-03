@@ -9,23 +9,31 @@
 /* Begin PBXBuildFile section */
 		2660155A24D82B5F00F45910 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660155924D82B5F00F45910 /* AppDelegate.swift */; };
 		2660155C24D82B5F00F45910 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660155B24D82B5F00F45910 /* SceneDelegate.swift */; };
-		2660155E24D82B5F00F45910 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660155D24D82B5F00F45910 /* ViewController.swift */; };
 		2660156124D82B5F00F45910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2660155F24D82B5F00F45910 /* Main.storyboard */; };
 		2660156424D82B5F00F45910 /* CoreDataFun2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2660156224D82B5F00F45910 /* CoreDataFun2.xcdatamodeld */; };
 		2660156624D82B6200F45910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2660156524D82B6200F45910 /* Assets.xcassets */; };
 		2660156924D82B6200F45910 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2660156724D82B6200F45910 /* LaunchScreen.storyboard */; };
+		2660157124D82C3600F45910 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660157024D82C3600F45910 /* TableViewController.swift */; };
+		2660157424D82DF200F45910 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660157224D82DF200F45910 /* Task+CoreDataClass.swift */; };
+		2660157524D82DF200F45910 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660157324D82DF200F45910 /* Task+CoreDataProperties.swift */; };
+		2660157724D82FE300F45910 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660157624D82FE300F45910 /* UIColor+Ext.swift */; };
+		2660157924D8319F00F45910 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660157824D8319F00F45910 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2660155624D82B5F00F45910 /* CoreDataFun2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataFun2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2660155924D82B5F00F45910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2660155B24D82B5F00F45910 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2660155D24D82B5F00F45910 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2660156024D82B5F00F45910 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2660156324D82B5F00F45910 /* CoreDataFun2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataFun2.xcdatamodel; sourceTree = "<group>"; };
 		2660156524D82B6200F45910 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2660156824D82B6200F45910 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2660156A24D82B6200F45910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2660157024D82C3600F45910 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		2660157224D82DF200F45910 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2660157324D82DF200F45910 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2660157624D82FE300F45910 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		2660157824D8319F00F45910 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +68,16 @@
 			children = (
 				2660155924D82B5F00F45910 /* AppDelegate.swift */,
 				2660155B24D82B5F00F45910 /* SceneDelegate.swift */,
-				2660155D24D82B5F00F45910 /* ViewController.swift */,
+				2660157024D82C3600F45910 /* TableViewController.swift */,
+				2660157824D8319F00F45910 /* DetailViewController.swift */,
 				2660155F24D82B5F00F45910 /* Main.storyboard */,
 				2660156524D82B6200F45910 /* Assets.xcassets */,
 				2660156724D82B6200F45910 /* LaunchScreen.storyboard */,
 				2660156A24D82B6200F45910 /* Info.plist */,
 				2660156224D82B5F00F45910 /* CoreDataFun2.xcdatamodeld */,
+				2660157224D82DF200F45910 /* Task+CoreDataClass.swift */,
+				2660157324D82DF200F45910 /* Task+CoreDataProperties.swift */,
+				2660157624D82FE300F45910 /* UIColor+Ext.swift */,
 			);
 			path = CoreDataFun2;
 			sourceTree = "<group>";
@@ -141,10 +153,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2660155E24D82B5F00F45910 /* ViewController.swift in Sources */,
+				2660157724D82FE300F45910 /* UIColor+Ext.swift in Sources */,
 				2660155A24D82B5F00F45910 /* AppDelegate.swift in Sources */,
+				2660157424D82DF200F45910 /* Task+CoreDataClass.swift in Sources */,
 				2660155C24D82B5F00F45910 /* SceneDelegate.swift in Sources */,
 				2660156424D82B5F00F45910 /* CoreDataFun2.xcdatamodeld in Sources */,
+				2660157524D82DF200F45910 /* Task+CoreDataProperties.swift in Sources */,
+				2660157124D82C3600F45910 /* TableViewController.swift in Sources */,
+				2660157924D8319F00F45910 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
