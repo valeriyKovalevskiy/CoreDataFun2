@@ -100,6 +100,8 @@ class TableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    
+    
     func saveTask(name: String,
                   isCompleted: Bool = false,
                   imageData: UIImage = UIImage(systemName: "pencil.slash")!,
@@ -129,6 +131,8 @@ class TableViewController: UITableViewController {
         catch {
             completion(.failure(error))
         }
+        
+        fetchTasks()
     }
     
     //MARK: - Actions
@@ -161,6 +165,7 @@ class TableViewController: UITableViewController {
         let cellTask = tasksTableDataSource[indexPath.section][indexPath.row]
         
         cell.textLabel?.text = cellTask.name
+        fetchTasks()
         return cell
     }
     
